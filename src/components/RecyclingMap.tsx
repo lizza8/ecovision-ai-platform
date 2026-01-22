@@ -149,7 +149,7 @@ export default function RecyclingMap() {
   const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
   const [mapCenter, setMapCenter] = useState<[number, number]>([41.7151, 44.8271]);
-  const [mapZoom, setMapZoom] = useState(12);
+  const [mapZoom, setMapZoom] = useState(7);
   const [nearestPoint, setNearestPoint] = useState<RecyclingPoint | null>(null);
 
   const materials = ['Plastic', 'Metal', 'Glass', 'Paper'];
@@ -240,7 +240,7 @@ export default function RecyclingMap() {
           </div>
           {nearestPoint && (
             <div className="text-center">
-              <div className="text-h4 font-bold text-accent">{nearestPoint.name}</div>
+              <div className="text-body font-bold text-accent">{nearestPoint.name}</div>
               <div className="text-caption text-gray-300">Nearest Location</div>
             </div>
           )}
@@ -276,17 +276,17 @@ export default function RecyclingMap() {
         </Button>
       </div>
 
-      <div className="relative h-[500px] rounded-xl overflow-hidden border-2 border-primary/30 shadow-neon z-0">
+      <div className="relative h-[600px] rounded-xl overflow-hidden border-2 border-primary/30 shadow-neon">
         <MapContainer
           center={mapCenter}
           zoom={mapZoom}
-          style={{ height: '100%', width: '100%' }}
-          className="z-0"
+          scrollWheelZoom={true}
+          style={{ height: '100%', width: '100%', zIndex: 0 }}
         >
           <MapController center={mapCenter} zoom={mapZoom} />
           
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
